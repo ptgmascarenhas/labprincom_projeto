@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
+import sys
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(03, GPIO.OUT)
@@ -17,7 +18,9 @@ def SetAngle(angle):
 	GPIO.output(03, False)
 	pwm.ChangeDutyCycle(0)
 
-SetAngle(90) 
+for i in range(sys.argv[1], sys.argv[2]):
+    SetAngle(i)
+    sleep(0.1) 
 
 pwm.stop()
 GPIO.cleanup()
