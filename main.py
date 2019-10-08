@@ -6,9 +6,6 @@ GPIO.setmode(GPIO.BCM)
 
 sensor = HC_SR04()
 
-try:
-    dst = sensor.get_distance()
-    print(f'Distancia: {dst}')
-except:
-    print('Desligando')
-    GPIO.cleanup()
+dst = sensor.get_distance()
+
+GPIO.cleanup()
