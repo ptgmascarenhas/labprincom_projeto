@@ -1,11 +1,14 @@
 import RPi.GPIO as GPIO
-from HC_SR04 import HC_SR04
+from hc_sr04 import HC_SR04
 import time
 
 GPIO.setmode(GPIO.BCM)
 
 sensor = HC_SR04()
 
-sensor.get_distance()
-
-GPIO.cleanup()
+try:
+    dst = sensor.get_distance()
+    print(f'Distancia: {dst}')
+except:
+    print('Desligando')
+    GPIO.cleanup()

@@ -11,8 +11,6 @@ class HC_SR04():
         GPIO.setup(self.GPIO_TRIGGER, GPIO.OUT)
         GPIO.setup(self.GPIO_ECHO, GPIO.IN)
 
-
-
     def get_distance(self):
         # set Trigger to HIGH
         GPIO.output(self.GPIO_TRIGGER, True)
