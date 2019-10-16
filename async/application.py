@@ -6,11 +6,11 @@ from threading import Thread, Event
 import RPi.GPIO as GPIO
 from hc_sr04 import HC_SR04
 
-__author__ = 'slynn'
-
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-app.config['DEBUG'] = True
+
+# __author__ = 'slynn'
+# app.config['SECRET_KEY'] = 'secret!'
+# app.config['DEBUG'] = True
 
 #turn the flask app into a socketio app
 socketio = SocketIO(app)
