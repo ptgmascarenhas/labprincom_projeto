@@ -25,13 +25,13 @@ sensor = HC_SR04()
 
 class Distance(Thread):
     def __init__(self):
-        self.delay = 1
+        self.delay = 0.5
         super(Distance, self).__init__()
 
     def measure(self):
         while not thread_stop_event.isSet():
             dst = sensor.get_distance()
-            socketio.emit('newdata', {'distance': dst}, namespace='/test')
+            socketio.emit('newdata', {'distance': dst, 'angle': 0}, namespace='/test')
             sleep(self.delay)
 
     def run(self):
