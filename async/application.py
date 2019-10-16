@@ -31,7 +31,7 @@ class Distance(Thread):
     def measure(self):
         while not thread_stop_event.isSet():
             dst = sensor.get_distance()
-            socketio.emit('newdata', {'distance': dst}, namespace='/test')
+            socketio.emit('newnumber', {'number': dst}, namespace='/test')
             sleep(self.delay)
 
     def run(self):
