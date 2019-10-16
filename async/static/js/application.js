@@ -13,13 +13,15 @@ $(document).ready(function(){
         if (json_received.length >= 180){
             json_received.shift()
         }            
-        var json_new_sample_distance = msg.distance;
-        var json_new_sample_angle = msg.angle;
-        var json_new_sample = json_new_sample_distance;
+        var json_new_sample_distance = msg.distance.toString();
+        var json_new_sample_angle = msg.angle.toString();
+
+        var json_new_sample = json_new_sample_distance.concat(" ", json_new_sample_angle);
 
         json_received.push(json_new_sample);
 
         json_string = '';
+
         for (var i = 0; i < json_received.length; i++){
             json_string = json_string + '<p>' + json_received[i].toString() + '</p>';
         }
