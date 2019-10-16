@@ -7,15 +7,18 @@ $(document).ready(function(){
     //receive details from server
     socket.on('newdata', function(msg) {
         console.log("Received number" + msg.distance);
-        //maintain a list of ten numbers
-        if (json_received.length >= 10){
+        
+        //maintain a list of 180 numbers
+        if (json_received.length >= 180){
             json_received.shift()
         }            
-        json_received.push(msg.distance);
-        numbers_string = '';
+        var json_new_sample = msg.distance;
+        json_received.push(json_new_sample);
+
+        json_string = '';
         for (var i = 0; i < json_received.length; i++){
-            numbers_string = numbers_string + '<p>' + json_received[i].toString() + '</p>';
+            json_string = json_string + '<p>' + json_received[i].toString() + '</p>';
         }
-        $('#log').html(numbers_string);
+        $('#log').html(json_string);
     });
 });
