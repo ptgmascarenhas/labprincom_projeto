@@ -23,15 +23,15 @@ GPIO.setmode(GPIO.BCM)
 
 sensor = HC_SR04()
 
-class Distance(Thread):
+class Sonar(Thread):
     def __init__(self):
         self.delay = 0.5
-        super(Distance, self).__init__()
+        super(Sonar, self).__init__()
 
     def measure(self):
         while not thread_stop_event.isSet():
             dst = sensor.get_distance()
-            socketio.emit('newdata', {'distance': dst, 'angle': 0}, namespace='/test')
+            socketio.emit('newdata', {'distance': dst, 'angle': 0}, namespace='/project')
             sleep(self.delay)
 
     def run(self):
@@ -42,7 +42,7 @@ def index():
     #only by sending this page first will the client be connected to the socketio instance
     return render_template('index.html')
 
-@socketio.on('connect', namespace='/test')
+@socketio.on('connect', namespace='/project')
 def test_connect():
     # need visibility of the global thread object
     global thread
@@ -51,10 +51,10 @@ def test_connect():
     #Start the random number generator thread only if the thread has not been started before.
     if not thread.isAlive():
         print("Starting Thread")
-        thread = Distance()
+        thread = Sonar()
         thread.start()
 
-@socketio.on('disconnect', namespace='/test')
+@socketio.on('disconnect', namespace='/project')
 def test_disconnect():
     print('Client disconnected')
 
