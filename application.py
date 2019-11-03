@@ -31,7 +31,7 @@ class Sonar(Thread):
     def measure(self):
         while not thread_stop_event.isSet():
             dst = sensor.get_distance()
-            socketio.emit('newdata', {'distance': dst, 'angle': 0}, namespace='/project')
+            socketio.emit('newdata', {'distance': dst, 'angle': 0}, namespace='/test')
             sleep(self.delay)
 
     def run(self):
@@ -42,7 +42,7 @@ def index():
     #only by sending this page first will the client be connected to the socketio instance
     return render_template('index.html')
 
-@socketio.on('connect', namespace='/project')
+@socketio.on('connect', namespace='/test')
 def test_connect():
     # need visibility of the global thread object
     global thread
@@ -54,7 +54,7 @@ def test_connect():
         thread = Sonar()
         thread.start()
 
-@socketio.on('disconnect', namespace='/project')
+@socketio.on('disconnect', namespace='/test')
 def test_disconnect():
     print('Client disconnected')
 
