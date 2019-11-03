@@ -6,6 +6,7 @@ GPIO.setmode(GPIO.BCM)
 class Servo():
     def __init__(self):
         #set GPIO Pins
+        self.angle = 0
         self.servo_pin = 18
         self.deg_0_pulse   = 0.5 
         self.deg_180_pulse = 2.5
@@ -22,9 +23,14 @@ class Servo():
         self.pwm = GPIO.PWM(self.servo_pin,self.f)
         self.pwm.start(0)
 
-    def set_angle(self,angle):
-        duty = self.deg_0_duty + (angle/180.0)* self.duty_range
+    def set_angle(self):
+        duty = self.deg_0_duty + (self.angle/180.0)* self.duty_range
         self.pwm.ChangeDutyCycle(duty)
     
     def move(self):
-        return 0
+        if (self.angle > 180):
+            self.angle = 0
+        
+        self.set_angle()
+
+        return self.angle

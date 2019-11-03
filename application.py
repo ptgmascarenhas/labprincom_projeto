@@ -31,8 +31,8 @@ class Sonar(Thread):
 
     def measure(self):
         while not thread_stop_event.isSet():
-            dst = sensor.get_distance()
             ang = servo.move()
+            dst = sensor.get_distance()
             socketio.emit('newdata', {'distance': dst, 'angle': ang}, namespace='/test')
             sleep(self.delay)
 
