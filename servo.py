@@ -28,6 +28,7 @@ class Servo():
         self.pwm.ChangeDutyCycle(duty)
     
     def move(self):
+        self.angle = self.angle + 1
         if (self.angle > 180):
             self.angle = 0
         
