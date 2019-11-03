@@ -5,6 +5,7 @@ from time import sleep
 from threading import Thread, Event
 import RPi.GPIO as GPIO
 from hc_sr04 import HC_SR04
+from servo import Servo
 
 app = Flask(__name__)
 
@@ -15,13 +16,13 @@ app = Flask(__name__)
 #turn the flask app into a socketio app
 socketio = SocketIO(app)
 
-#random number Generator Thread
 thread = Thread()
 thread_stop_event = Event()
 
 GPIO.setmode(GPIO.BCM)
 
 sensor = HC_SR04()
+servo = Servo()
 
 class Sonar(Thread):
     def __init__(self):
@@ -31,7 +32,8 @@ class Sonar(Thread):
     def measure(self):
         while not thread_stop_event.isSet():
             dst = sensor.get_distance()
-            socketio.emit('newdata', {'distance': dst, 'angle': 0}, namespace='/test')
+            ang = servo.move()
+            socketio.emit('newdata', {'distance': dst, 'angle': ang}, namespace='/test')
             sleep(self.delay)
 
     def run(self):
@@ -48,7 +50,7 @@ def test_connect():
     global thread
     print('Client connected')
 
-    #Start the random number generator thread only if the thread has not been started before.
+    #Start the Sonar thread only if the thread has not been started before.
     if not thread.isAlive():
         print("Starting Thread")
         thread = Sonar()
