@@ -3,6 +3,8 @@ import time
 
 class HC_SR04():
     def __init__(self):
+        GPIO.setmode(GPIO.BCM)
+        
         #set GPIO Pins
         self.GPIO_TRIGGER = 18
         self.GPIO_ECHO = 24

@@ -7,7 +7,7 @@ class Servo():
 
         #set GPIO Pins
         self.angle = 0
-        self.servo_pin = 18
+        self.servo_pin = 17
         self.deg_0_pulse   = 0.5 
         self.deg_180_pulse = 2.5
         self.f = 50.0  
