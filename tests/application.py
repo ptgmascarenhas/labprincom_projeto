@@ -19,7 +19,7 @@ servo = Servo()
 
 class Sonar(Thread):
     def __init__(self):
-        self.delay = 0.5
+        self.delay = 0.05
         super(Sonar, self).__init__()
 
     def measure(self):

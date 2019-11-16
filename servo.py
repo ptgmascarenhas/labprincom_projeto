@@ -4,7 +4,8 @@ import time
 class Servo():
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
-
+        self.position = 1
+        self.lastangle = 0
         #set GPIO Pins
         self.angle = 0
         self.servo_pin = 17
@@ -28,9 +29,18 @@ class Servo():
         self.pwm.ChangeDutyCycle(duty)
     
     def move(self):
-        self.angle = self.angle + 1
-        if (self.angle > 180):
-            self.angle = 0
+        if self.position = 1:
+            self.angle = self.lastangle + 1
+            if self.angle > 90:
+                self.position = -1
+
+        if self.position = -1:
+            self.angle = self.lastangle - 1
+            if self.angle = 0:
+                self.position = 1
+
+        self.lastangle = self.angle
+
         
         self.set_angle()
 
