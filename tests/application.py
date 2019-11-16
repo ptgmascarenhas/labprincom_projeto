@@ -17,8 +17,6 @@ thread_stop_event = Event()
 sensor = HC_SR04()
 servo = Servo()
 
-GPIO.setmode(GPIO.BCM)
-
 class Sonar(Thread):
     def __init__(self):
         self.delay = 0.5

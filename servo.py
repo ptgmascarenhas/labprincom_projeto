@@ -3,6 +3,8 @@ import time
 
 class Servo():
     def __init__(self):
+        GPIO.setmode(GPIO.BCM)
+
         #set GPIO Pins
         self.angle = 0
         self.servo_pin = 18
