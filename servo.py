@@ -29,14 +29,14 @@ class Servo():
         self.pwm.ChangeDutyCycle(duty)
     
     def move(self):
-        if self.position = 1:
+        if self.position == 1:
             self.angle = self.lastangle + 1
             if self.angle > 90:
                 self.position = -1
 
-        if self.position = -1:
+        if self.position == -1:
             self.angle = self.lastangle - 1
-            if self.angle = 0:
+            if self.angle == 0:
                 self.position = 1
 
         self.lastangle = self.angle
