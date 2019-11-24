@@ -1,20 +1,12 @@
-from time import sleep
-from hc_sr04 import HC_SR04
-from servo import Servo
 import numpy as np
 import matplotlib.pyplot as plt
 import random
 from operator import itemgetter 
 
-sensor = HC_SR04()
-servo = Servo()
-
 mapa = []
 
 for i in range(0, 180):
-    servo.angle = i
-    servo.set_angle()
-    dst = sensor.get_distance()
+    dst = random.randint(0, 300)
     medida = {'angle': i*np.pi/180, 'distance': dst}
     mapa.append(medida)
 
