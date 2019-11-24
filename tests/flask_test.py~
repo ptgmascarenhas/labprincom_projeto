@@ -15,7 +15,7 @@ def main():
 @app.route("/mapa")
 def mapear():
 	for i in range(0, 180):
-		dst = random.randint(0, 300)
+		dst = random.randint(a, b)
 		medida = {'angle': i, 'distance': dst}
 		mapa.append(medida)
 		

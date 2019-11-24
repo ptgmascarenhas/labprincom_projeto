@@ -12,7 +12,7 @@ for i in range(0, 180):
     servo.set_angle()
     sleep(0.05)
     dst = sensor.get_distance()
-    medida = {'angle': i, 'distance':round(dst,2)}
+    medida = {'angle': i, 'distance':dst}
     mapa.append(medida)
 
 print(mapa)
