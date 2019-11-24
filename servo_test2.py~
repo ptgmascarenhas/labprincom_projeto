@@ -26,6 +26,9 @@ try:
         if i <= 2:
             break
 
+
+
+
 except KeyboardInterrupt:
   p.stop()
   GPIO.cleanup()
