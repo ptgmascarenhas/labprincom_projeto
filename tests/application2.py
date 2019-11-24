@@ -8,9 +8,10 @@ servo = Servo()
 mapa = []
 
 for i in range(0, 90):
-    servo.set_angle(i)
+    servo.angle = i
+    servo.set_angle()
     dst = sensor.get_distance()
-    medida = {"angle": i; "distance":dst}
-    mapa = mapa.append{medida}
+    medida = {"angle": i, "distance":dst}
+    mapa = mapa.append(medida)
 
 print(mapa)
