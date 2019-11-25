@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import random
 from operator import itemgetter 
 import RPi.GPIO as GPIO
+import os
 
 def get_graph():
     sensor = HC_SR04()
@@ -36,7 +37,7 @@ def get_graph():
     graph.set_thetamin(0)
     graph.set_thetamax(180)
 
-
     GPIO.cleanup()
 
-    plt.savefig('grafico.png')
+    plt.savefig('static/images/grafico.png')
+    graph.clear()

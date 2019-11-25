@@ -12,7 +12,7 @@ def main():
 	return "Vá para /mapa"
     
 @app.route("/mapa")
-def mapear():	
+def mapear():
 	get_graph()
 	return render_template("index_image.html")
 
